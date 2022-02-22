@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int n;
+bool z(int k)
+{
+  return !k;
+  }
+  
+  
+  int main()
+{
+cin>>n;
+if(zero(n)) cout<<"zero";
+else cout<<"non zero";
+return 0;
+}
