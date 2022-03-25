@@ -38,9 +38,6 @@ void check(){
     if(num>max_num) max_num = num;
 }
 
-
-
-
 int main(void){
     int N,K;
     string tmp,tmp2;
