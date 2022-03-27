@@ -2,41 +2,49 @@
 using namespace std;
 vector<int> parent;
 
-typedef struct kru{
-    int from;int to;int val;
-}KS;
+typedef struct {int x; int y; int z;} point;
+vector<pair<int,int>> x,y,z;
 
 int find(int u){
     if(u==parent[u]) return u;
     return parent[u] = find(parent[u]);
 }
 
-bool compare(KS &d1,KS &d2){return d1.val<d2.val;}
+bool compare(point &d1,point &d2){
+    return d1.z<d2.z;
+}
 
 int main(){
     int N,t1,t2,temp;
+    ifstream fin;
+    fin.open("test_txt/in.txt");
     scanf("%d",&N);
-    vector<KS> road;
-    vector<KS> vertex(N+1);
+    vector<point> road;
     parent.resize(N+1);
-    for(int i=1;i<N+1;i++) parent[i] = i;
-    for(int i=1;i<N+1;i++){  
-        scanf("%d %d %d",&vertex[i].from,&vertex[i].to,&vertex[i].val);
-        for(int j=1;j<i;j++){
-            temp = min(abs(vertex[j].from-vertex[i].from) , min(abs(vertex[j].to-vertex[i].to),abs(vertex[j].val-vertex[i].val)));
-            road.push_back({i,j,temp});
-        }
+    x.resize(N),y.resize(N),z.resize(N);
+    for(int i=0;i<N;i++) parent[i] = i;
+    for(int i=0;i<N;i++){  
+        scanf("%d %d %d",&x[i].first,&y[i].first,&z[i].first);
+        x[i].second = y[i].second = z[i].second = i;
+    }
+    sort(x.begin(),x.end());
+    sort(y.begin(),y.end());
+    sort(z.begin(),z.end());
+    for(int i=0;i<N-1;i++){
+        road.push_back({x[i].second ,x[i+1].second ,abs(x[i+1].first-x[i].first)});
+        road.push_back({y[i].second ,y[i+1].second ,abs(y[i+1].first-y[i].first)});
+        road.push_back({z[i].second ,z[i+1].second ,abs(z[i+1].first-z[i].first)});
     }
     sort(road.begin(),road.end(),compare);
-    int VE=0,sum=0,sma;
+    int VE = 0;
+    int sum = 0;
     for(auto K:road){
-        t1 = find(K.from);
-        t2 = find(K.to);
+        t1 = find(K.x); t2 = find(K.y);
+        temp = t1>t2 ? t2:t1;
         if(t1 != t2){
-            sma = t1 > t2 ? t2 : t1;
-            parent[K.from] = parent[K.to] = parent[t1] = parent[t2]  =   sma;
-            sum = sum + K.val;
-            VE++;
+            sum = sum + K.z;
+            VE = VE + 1;
+            parent[t1] = parent[t2] = parent[K.x] = parent[K.y] = temp;
             if(VE == N-1) break;
         }
     }
