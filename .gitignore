@@ -45,3 +45,5 @@
 *.exe
 *.out
 *.app
+*.txt
+/test_txt
