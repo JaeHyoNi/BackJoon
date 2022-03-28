@@ -46,4 +46,4 @@
 *.out
 *.app
 *.txt
-/test_txt
+test_txt/*.txt

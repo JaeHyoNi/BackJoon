@@ -17,12 +17,16 @@ bool compare(KS &d1,KS &d2){return d1.val<d2.val;}
 
 int main(){
     int V,E,t1,t2;
-    scanf("%d %d",&V,&E);
+    ifstream fin;
+    fin.open("test_txt/in.txt");
+    fin>>V>>E;
+    //scanf("%d %d",&V,&E);
     vector<KS> arr(E);
     parent.resize(V+1);
     for(int i=0;i<V+1;i++) parent[i] = i;
     for(int i=0;i<E;i++){  
-        scanf("%d %d %d",&arr[i].from,&arr[i].to,&arr[i].val);
+        fin>>arr[i].from>>arr[i].to>>arr[i].val;
+        //scanf("%d %d %d",&arr[i].from,&arr[i].to,&arr[i].val);
     }
     sort(arr.begin(),arr.end(),compare);
     int VE=0,sum=0,sma;
