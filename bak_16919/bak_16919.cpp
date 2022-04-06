@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 vector<int> lps;
-string str1,str2;
+string str,str1,str2;
 
 
 void make_lps(){
@@ -15,27 +15,25 @@ void make_lps(){
     }
 }
 
-
-
-
 int main(){
-    cin>>str1>>str2;
+    cin>>str>>str2;
+    int siz = str.size();
+    for(int i=0;i<siz;i++){
+        if(isalpha(str[i])) str1.push_back(str[i]);
+    }
     lps.resize(str2.size());
     make_lps();
     int iter = 0,i=0;
     while(iter < str1.size()){
         if(str1[iter] == str2[i]){
             iter++;i++;
-            // printf("iter = %d, i= %d\n",iter,i);
         }
         else{
             if(i!=0){
                 i = lps[i-1];
-                // printf("i : %d\n",i);
             }
             else{
                 iter++;
-                // printf("iter++ : %d\n",iter);
             }
         }
         if(i == str2.size()){
@@ -44,4 +42,5 @@ int main(){
         }
     }
     cout<<"0";
+    return 0;
 }
