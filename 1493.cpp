@@ -31,5 +31,5 @@ int main(){
     reverse(cubes.begin(),cubes.end());
     //int answer = solution(L,W,H);
     if(solution(L,W,H))   cout<<answer;
-    else cout<<"-1";
+    else cout<<"-1\n";
 }
