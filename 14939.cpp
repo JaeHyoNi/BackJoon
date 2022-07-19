@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <windows.h>
 using namespace std;
 
 bool arr[10][10];
