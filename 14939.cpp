@@ -22,16 +22,6 @@ void click(int a,int b){
     }
 }
 
-void show(){
-    cout<<endl;
-    Sleep(1000);
-    for(int i=0;i<10;i++){
-        for(int j=0;j<10;j++){
-            cout<<temp[i][j];
-        }cout<<endl;
-    }
-}
-
 bool check(){
     int num = 0;
     
@@ -56,7 +46,6 @@ bool check(){
 bool check2(){
     int num = 0;
     
-    show();
     for(int i=0;i<9;i++){
         for(int j=0;j<10;j++){
             if(temp[i][j] == true){
