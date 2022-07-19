@@ -2,7 +2,7 @@
 using namespace std;
 
 int main(){
-    int N,mid,lt,rt,temp,siz = 1; cin>>N;
+    int N,temp,siz = 1; cin>>N;
     multiset<int> list;
     scanf("%d",&temp);
     list.insert(temp);
@@ -12,7 +12,7 @@ int main(){
         scanf("%d",&temp);
         list.insert(temp);
         siz ++;
-        if(siz%2!=0) {if(temp > *iter) {iter++;}}
+        if(siz%2!=0) {if(temp >= *iter) {iter++;}}
         else {if(temp < *iter){iter--;}}
         printf("%d\n",*iter);
     }

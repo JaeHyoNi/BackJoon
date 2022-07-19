@@ -24,6 +24,11 @@ void show(){
         }cout<<endl;
     }cout<<endl;
 }
+int checkalpha(char C){
+    if(C<='Z' && C>='A') return 1;
+    else if(C<='z' && C>='a') return 2;
+    else return 0;
+}
 
 int main(){
     int T,N,M,ans; cin>>T;

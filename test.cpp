@@ -1,30 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define max 500000000
-bool arr[max];
 
-int main()
-{
-    ofstream fout;
-    fout.open("test_txt/prime.txt");
-    arr[0] = 1;arr[1] = 1;
-    for(int i=2;i<max;i++){
-        if(arr[i] == 0){
-            int k = 2;
-            while(k*i<max){
-                arr[k*i] = 1;
-                k++;
-            }
-        }
+int solution(int a,int b){
+    int answer = 0,t1,t2,carry=0;
+    while(a != 0){
+        t1 = a%10 , t2 = b%10;
+        a/=10,b/=10;
+        if(t1+t2+carry>9){carry = 1; answer+=1;}
+        else{carry = 0;}
     }
-    for(long long i=2;i<max;i++){
-        if(arr[i] == 0){
-            if(i*i>2000000000) {
-                fout.close();
-                return 0;
-            }    
-            fout<<i*i<<", ";
-        }
+    return answer;
+}
+
+int main(){
+    int a,b; 
+    while(1){
+        cin>>a>>b;  if(a<b) swap(a,b);
+        if(a==0 && b==0){break;}
+        cout<<solution(a,b)<<"\n";
     }
-    fout.close();
 }

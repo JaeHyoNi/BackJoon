@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct cut{int sx;int sy;int ex;int ey;int w;};
+vector<cut> li;
+vector<vector<int>> cutting; 
+vector<int> arr(2501,0) , arr2;
+
+int ccw(int x1, int y1, int x2, int y2, int x3, int y3) {
+    printf("%d %d %d %d %d %d\n",x1,y1,x2,y2,x3,y3);
+    return (x2-x1)*(y3-y1)-(x3-x1)*(y2-y1);
+}
+
+void show(cut a){
+    printf("%d %d %d %d %d\n",a.sx,a.sy,a.ex,a.ey,a.w);
+}
+
+bool slicing(cut a, cut b){
+    int is1,is2;
+    show(a);
+    show(b);
+    is1 = ccw(a.sx,a.sy,a.ex,a.ey,b.ex,b.ey);
+    is2 = ccw(a.sx,a.sy,a.ex,a.ey,b.sx,b.sy);
+    printf("is1 : %d , is2 : %d\n",is1,is2);
+    if(is1*is2 <= -1) return true;
+    else return false;
+}
+
+int main(){
+    int N; cin>>N;
+    cut temp;
+    cutting.resize(N);
+    for(int i=0;i<N;i++){
+        cin>>temp.sx>>temp.sy>>temp.ex>>temp.ey>>temp.w; li.push_back(temp);
+        for(int j=0;j<i;j++){
+            printf("i:%d j:%d slice: %d\n",i,j,slicing(li[j],temp));
+            if(slicing(li[j],temp)){
+                cutting[i].emplace_back(j);
+                cutting[j].emplace_back(i);
+                arr[i]++; arr[j]++;
+            }
+            cout<<endl;
+        }
+    }
+    arr2 = arr;
+    vector<int> ord(N);
+    int SUM = 0,answer = INT32_MAX;
+    for(int i=0;i<N;i++){ord[i] = i;}
+    do{
+        for(auto K:ord){cout<<K<<" ";}cout<<endl;
+        SUM = 0;
+        arr2 = arr;
+        cout<<"ord\n";
+        for(auto K: ord){
+            SUM += ((arr2[K]+1)*li[K].w);
+            printf("%d : %d, %d, %d\n",K,arr2[K],li[K].w,((arr2[K]+1)*li[K].w));
+            for(auto J:cutting[K]){
+                arr2[J]--;
+            }
+        }
+        cout<<endl;
+        if(answer > SUM) cout<<"this!";
+        answer = min(SUM,answer);
+    }while(next_permutation(ord.begin(),ord.end()));
+    cout<<answer;
+}

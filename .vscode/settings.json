@@ -1,8 +1,20 @@
 {
     "files.associations": {
+        "ostream": "cpp",
         "utility": "cpp",
         "iostream": "cpp",
+        "vector": "cpp",
+        "fstream": "cpp",
+        "stack": "cpp",
+        "random": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "cmath": "cpp",
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "xiosbase": "cpp",
         "queue": "cpp",
-        "ostream": "cpp"
+        "complex": "cpp",
+        "valarray": "cpp"
     }
 }
