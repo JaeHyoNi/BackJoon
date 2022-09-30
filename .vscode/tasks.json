@@ -3,10 +3,10 @@
 	"tasks": [
 		{
 			"type": "cppbuild",
-			"label": "C/C++: g++ 활성 파일 빌드",
-			"command": "/usr/bin/g++",
+			"label": "C/C++: clang++ build active file",
+			"command": "/usr/bin/clang++",
 			"args": [
-				"-fdiagnostics-color=always",
+				"-std=c++17",
 				"-g",
 				"${file}",
 				"-o",
@@ -22,7 +22,7 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"detail": "컴파일러: /usr/bin/g++"
+			"detail": "compiler: /usr/bin/clang++"
 		}
 	]
 }

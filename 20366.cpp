@@ -1,26 +1,29 @@
 #include <bits/stdc++.h>
+
 using namespace std;
-using ll = long long;
-int main(){
-    int N; cin>>N;
-    ll temp,pre,ans;
-    vector<ll> ball(N);
-    for(int i=0;i<N;i++) {cin>>ball[i]; }
-    sort(ball.begin(),ball.end());
-    for(int i=0;i<N-1;i++){
-        for(int j=i+3;j<N;j++){
-            for(int k=i+1;k<j-1;k++){
-                pre = 99999999999;
-                if(k==i || k==j) continue;
-                for(int l=k+1;l<j;l++){
-                    if(l==i || l==j) continue;
-                    temp = abs( (ball[i]+ball[j]) - (ball[k]+ball[l]) );
-                    if( pre < temp ) break;
-                    pre = temp;
-                    if(pre < ans) {ans = pre;}
-                }
-            }
-        }
-    }
-    cout<<ans<<endl;
+
+int main() {
+	int N;
+	cin >> N;
+	vector<int> arr(N);
+	for (int i = 0; i < N; ++i) cin >> arr[i];
+	sort(arr.begin(), arr.end()); 
+	int answer = INT_MAX;
+	for (int i = 0; i < N - 3; ++i) {
+		for (int j = i + 3; j < N; ++j) {
+			int left = i + 1;
+			int right = j - 1;
+			while (left < right) {
+                int st = arr[i] + arr[j];
+                int en = arr[left] + arr[right];
+				int result = en - st;
+				answer = min(answer, abs(result)); 
+				if (result > 0)  
+					right = right - 1;
+				else 
+					left = left + 1;
+			}
+		}
+	}
+	cout << answer<<"\n";
 }
